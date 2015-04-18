@@ -30,7 +30,7 @@ public class Cursor : MonoBehaviour {
 		Cell cell = grid.GetCell(xPos, yPos);
 		Debug.LogWarning("Hit actiave on cell " + cell);
 		if(cell != null){
-			cell.Alive = true;
+			cell.Revive();
 		}
 	}
 

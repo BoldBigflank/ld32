@@ -33,7 +33,6 @@ public class Cell : MonoBehaviour {
 	bool alive;
 	public bool Alive {
 		get { return alive; }
-		set { alive = value; }
 	}
 
 	public void Initialize(Grid newGrid, int newXPos, int newYPos){
@@ -75,6 +74,13 @@ public class Cell : MonoBehaviour {
 			alive = true;
 		}
 
+		if(CellUpdated != null){
+			CellUpdated(this, new System.EventArgs());
+		}
+	}
+
+	public void Revive(){
+		alive = true;
 		if(CellUpdated != null){
 			CellUpdated(this, new System.EventArgs());
 		}
