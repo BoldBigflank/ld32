@@ -83,9 +83,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 129956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b83cf554e6382423d84c2975a379f993, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a73df8fc3b614148b2b6e9e964f7277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellScript: {fileID: 11486710}
 --- !u!114 &11486710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94,10 +95,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 129956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac7b6e5de08a4a4e88a086a17911b6d, type: 3}
+  m_Script: {fileID: 11500000, guid: d112d707abe394995a04b5210f070921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellScript: {fileID: 11475962}
+  xPos: 0
+  yPos: 0
+  owner: 0
+  alive: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

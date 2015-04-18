@@ -42,6 +42,10 @@ public class Cell : MonoBehaviour {
 		if(Random.Range(0,2) > 0){
 			alive = true;
 		}
+
+		if(CellUpdated != null){
+			CellUpdated(this, new System.EventArgs());
+		}
 	}
 
 	public void Live(){
