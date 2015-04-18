@@ -10,14 +10,18 @@ public class Cursor : MonoBehaviour {
 	int xPos;
 	public int XPos {
 		get { return xPos; }
-		set { xPos = value; }
 	}
 
 	[SerializeField]
 	int yPos;
 	public int YPos {
 		get { return yPos; }
-		set { yPos = value; }
+	}
+
+	[SerializeField]
+	bool isSlowing;
+	public bool IsSlowing {
+		get { return isSlowing; }
 	}
 
 	// Use this for initialization
@@ -27,7 +31,6 @@ public class Cursor : MonoBehaviour {
 	
 	public void Activate(){
 		Cell cell = grid.GetCell(xPos, yPos);
-		Debug.LogWarning("Hit actiave on cell " + cell);
 		if(cell != null){
 			cell.Revive();
 		}
@@ -40,5 +43,9 @@ public class Cursor : MonoBehaviour {
 		if(yPos + y >= 0 && yPos + y < grid.YSize){
 			yPos += y;
 		}
+	}
+
+	public void SetSlow(bool holdingSlow){
+		isSlowing = holdingSlow;
 	}
 }

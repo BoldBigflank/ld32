@@ -19,6 +19,8 @@ public class PlayerControl : MonoBehaviour {
 	Key keyUp = Key.W;
 	[SerializeField]
 	Key keyDown = Key.S;
+	[SerializeField]
+	Key keySlow = Key.Q;
 
 	[SerializeField]
 	float cursorRepeatDelay = 0.1f;
@@ -29,6 +31,7 @@ public class PlayerControl : MonoBehaviour {
 	int xMove;
 	int yMove;
 	bool setLive;
+	bool setSlow;
 
 	void Start(){
 		actions = new CursorActions();
@@ -37,13 +40,15 @@ public class PlayerControl : MonoBehaviour {
 		actions.Right.AddDefaultBinding( keyRight );
 		actions.Up.AddDefaultBinding( keyUp );
 		actions.Down.AddDefaultBinding( keyDown );
-			actions.Device = InputManager.ActiveDevice;
+		actions.Slow.AddDefaultBinding( keySlow );
+		actions.Device = InputManager.ActiveDevice;
 
 	}
 
 
 	// Update is called once per frame
 	void Update () {
+#region input logic
 		cursorMovedTimer -= Time.deltaTime;
 		if(cursorMovedTimer < 0.0f){
 			cursorMovedTimer = 0.0f;
@@ -69,17 +74,24 @@ public class PlayerControl : MonoBehaviour {
 				}
 			}
 		}
-
+		
 		if(actions.Activate.WasPressed){
 			setLive = true;
 		}
-		
+		setSlow = actions.Slow.IsPressed;
+
+#endregion
+
+#region input action
 		cursor.Move(xMove, yMove);
 		if(setLive){
 			cursor.Activate();
 		}
+		cursor.SetSlow(setSlow);
 		
 		xMove = 0;
 		yMove = 0;
+
+#endregion
 	}
 }

@@ -10,6 +10,7 @@ public class CursorActions : PlayerActionSet {
 	public PlayerAction Up;
 	public PlayerAction Down;
 	public TwoAxisInputControl Move;
+	public PlayerAction Slow;
 
 	// Use this for initialization
 	public CursorActions () {
@@ -19,6 +20,7 @@ public class CursorActions : PlayerActionSet {
 		Up = CreatePlayerAction("Up");
 		Down = CreatePlayerAction("Down");
 		Move = CreateTwoAxisPlayerAction(Left, Right, Down, Up);
+		Slow = CreatePlayerAction("Slow");
 	}
 
 }
