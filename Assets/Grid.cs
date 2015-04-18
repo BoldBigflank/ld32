@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Grid : MonoBehaviour {
+	[SerializeField]
+	GameObject cellPrefab;
 
 	[SerializeField]
 	int xSize;
@@ -22,12 +24,12 @@ public class Grid : MonoBehaviour {
 		cells = new Cell[xSize * ySize];
 		for(int x = 0; x < xSize; x ++){
 			for(int y = 0; y < ySize; y ++){
-				GameObject cellObject = new GameObject("cell_" + x + "_" + y);
+				GameObject cellObject = (GameObject)Instantiate (cellPrefab);
 				cellObject.transform.parent = transform;
-				cells[ySize*x+y] = cellObject.AddComponent<Cell>();
-				cells[ySize*x+y].Initialize(this, x, y);
-				CellView cellView = cellObject.AddComponent<CellView>();
+				cells[ySize*x+y] = cellObject.GetComponent<Cell>();
+				CellView cellView = cellObject.GetComponent<CellView>();
 				cellView.Initialize(cells[ySize*x+y]);
+				cells[ySize*x+y].Initialize(this, x, y);
 			}
 		}
 	}
