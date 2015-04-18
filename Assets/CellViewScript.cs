@@ -4,7 +4,7 @@ using System.Collections;
 public class CellViewScript : MonoBehaviour {
 	[SerializeField]
 	Cell cellScript;
-	Color[] ownerColors = new Color[] { Color.red, Color.blue, Color.green } ;
+	Color[] ownerColors = new Color[] { Color.white, Color.red, Color.blue } ;
 	// XPos, YPos
 	// owner
 	// alive
