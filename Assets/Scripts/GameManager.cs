@@ -9,7 +9,14 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField]
 	float roundTime = 1.0f;
+	public float RoundTime {
+		get { return roundTime; }
+	}
+
 	float roundTimer;
+	public float RoundTimer {
+		get { return roundTimer; }
+	}
 
 	[SerializeField]
 	float deltaTime = 16.0f;
