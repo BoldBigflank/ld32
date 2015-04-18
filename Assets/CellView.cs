@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CellViewScript : MonoBehaviour {
+public class CellView : MonoBehaviour {
 	[SerializeField]
 	Cell cellScript;
 	Color[] ownerColors = new Color[] { Color.white, Color.red, Color.blue } ;
-	// XPos, YPos
-	// owner
-	// alive
 
-	// Use this for initialization
-	void Start () {
+	public void Initialize(Cell newCell){
+		cellScript = newCell;
 		cellScript.CellUpdated += HandleCellUpdated;
 	}
 
