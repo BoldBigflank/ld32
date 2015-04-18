@@ -19,7 +19,9 @@ public class CellView : MonoBehaviour {
 		Color cellColor = ownerColors[cellScript.Owner];
 		if(!cellScript.Alive) { cellColor = cellColor / 2; }
 
-		gameObject.GetComponent<Renderer>().material.SetColor ("_Color", cellColor);
+		if(gameObject.GetComponent<Renderer>() != null){
+			gameObject.GetComponent<Renderer>().material.SetColor ("_Color", cellColor);
+		}
 	}
 	
 	// Update is called once per frame
