@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CellViewScript : MonoBehaviour {
+public class CellView : MonoBehaviour {
 	[SerializeField]
 	Cell cellScript;
 	Color[] ownerColors = new Color[] { Color.white, Color.red, Color.blue } ;
