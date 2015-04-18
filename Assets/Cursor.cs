@@ -26,7 +26,6 @@ public class Cursor : MonoBehaviour {
 	}
 	
 	public void Activate(){
-
 		Cell cell = grid.GetCell(xPos, yPos);
 		Debug.LogWarning("Hit actiave on cell " + cell);
 		if(cell != null){

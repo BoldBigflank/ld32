@@ -26,6 +26,10 @@ public class PlayerControl : MonoBehaviour {
 
 	CursorActions actions;
 
+	int xMove;
+	int yMove;
+	bool setLive;
+
 	void Start(){
 		actions = new CursorActions();
 		actions.Activate.AddDefaultBinding( keyActivate );
@@ -45,29 +49,37 @@ public class PlayerControl : MonoBehaviour {
 			cursorMovedTimer = 0.0f;
 		}
 
-		if(actions.Device != null){
-			if(cursorMovedTimer == 0){
+		if(cursorMovedTimer == 0){
+			if(actions.Device != null){
 				if(actions.Right.IsPressed){
-					cursor.Move(1,0);
+					xMove = 1;
 					cursorMovedTimer = cursorRepeatDelay;
 				}
 				if(actions.Left.IsPressed){
-					cursor.Move(-1,0);
+					xMove = -1;
 					cursorMovedTimer = cursorRepeatDelay;
 				}
 				if(actions.Up.IsPressed){
-					cursor.Move(0,1);
+					yMove = 1;
 					cursorMovedTimer = cursorRepeatDelay;
 				}
 				if(actions.Down.IsPressed){
-					cursor.Move(0,-1);
+					yMove = -1;
 					cursorMovedTimer = cursorRepeatDelay;
 				}
 			}
-
-			if(actions.Activate.WasPressed){
-				cursor.Activate();
-			}
 		}
+
+		if(actions.Activate.WasPressed){
+			setLive = true;
+		}
+		
+		cursor.Move(xMove, yMove);
+		if(setLive){
+			cursor.Activate();
+		}
+		
+		xMove = 0;
+		yMove = 0;
 	}
 }

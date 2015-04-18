@@ -6,8 +6,6 @@ public class Cell : MonoBehaviour {
 
 	public event System.EventHandler CellUpdated;
 
-	Grid grid;
-
 	[SerializeField]
 	int xPos;
 	public int XPos {
@@ -34,24 +32,39 @@ public class Cell : MonoBehaviour {
 	public bool Alive {
 		get { return alive; }
 	}
+	
+	List<Cell> adjacentCells = new List<Cell>();
 
-	public void Initialize(Grid newGrid, int newXPos, int newYPos){
-		grid = newGrid;
+	bool nextState;
+	int liveCount = 0;
+
+	System.EventArgs blankEvent;
+
+	public void Initialize(int newXPos, int newYPos){
 		xPos = newXPos;
 		yPos = newYPos;
 		if(Random.Range(0,2) > 0){
 			alive = true;
 		}
 
+		blankEvent = new System.EventArgs();
 		if(CellUpdated != null){
-			CellUpdated(this, new System.EventArgs());
+			CellUpdated(this, blankEvent);
 		}
+	}
+
+	public void InitializeAdjacentCells(Grid grid){
+		adjacentCells.Clear();
+		List<Cell> foundCells = grid.GetAdjacentCells(xPos, yPos);
+		for(int i = 0; i < foundCells.Count; i++){
+			adjacentCells.Add(foundCells[i]);
+		}
+
 	}
 
 	public void Live(){
 		// Rules for living here
-		List<Cell> adjacentCells = grid.GetAdjacentCells(xPos, yPos);
-		int liveCount = 0;
+		liveCount = 0;
 		for(int i = 0; i < adjacentCells.Count; i++){
 			if(adjacentCells[i].Alive){
 				liveCount ++;
@@ -59,30 +72,36 @@ public class Cell : MonoBehaviour {
 		}
 //		Any live cell with fewer than two live neighbours dies, as if caused by under-population.
 		if(alive && liveCount < 2){
-			alive = false;
+			nextState = false;
 		}
 //		Any live cell with two or three live neighbours lives on to the next generation.
 		if(alive && liveCount == 2 || liveCount == 3){
-			alive = true;
+			nextState = true;
 		}
 //		Any live cell with more than three live neighbours dies, as if by overcrowding.
 		if(alive && liveCount > 3){
-			alive = false;
+			nextState = false;
 		}
 //		Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 		if(!alive && liveCount == 3){
-			alive = true;
+			nextState = true;
 		}
 
-		if(CellUpdated != null){
-			CellUpdated(this, new System.EventArgs());
+	}
+
+	public void UpdateAt(){
+		if(alive != nextState){
+			alive = nextState;
+			if(CellUpdated != null){
+				CellUpdated(this, blankEvent);
+			}
 		}
 	}
 
 	public void Revive(){
 		alive = true;
 		if(CellUpdated != null){
-			CellUpdated(this, new System.EventArgs());
+			CellUpdated(this, blankEvent);
 		}
 	}
 

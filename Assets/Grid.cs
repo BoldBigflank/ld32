@@ -19,6 +19,18 @@ public class Grid : MonoBehaviour {
 	}
 
 	Cell[] cells;
+	List<Cell> adjacentCellContainer = new List<Cell>();
+	int arrayPosition = 0;
+	int yMaxLimit = 0;
+	int yMinLimit = 0;
+	int right = 0;
+	int left = 0;
+	int up = 0;
+	int down = 0;
+	int rightUp = 0;
+	int rightDown = 0;
+	int leftUp = 0;
+	int leftDown = 0;
 
 	void Start(){
 		cells = new Cell[xSize * ySize];
@@ -27,10 +39,13 @@ public class Grid : MonoBehaviour {
 				GameObject cellObject = (GameObject)Instantiate (cellPrefab);
 				cellObject.transform.parent = transform;
 				cells[ySize*x+y] = cellObject.GetComponent<Cell>();
+				cells[ySize*x+y].Initialize(x, y);
 				CellView cellView = cellObject.GetComponent<CellView>();
 				cellView.Initialize(cells[ySize*x+y]);
-				cells[ySize*x+y].Initialize(this, x, y);
 			}
+		}
+		for(int i = 0; i < cells.Length; i ++){
+			cells[i].InitializeAdjacentCells(this);
 		}
 	}
 
@@ -38,50 +53,56 @@ public class Grid : MonoBehaviour {
 		for(int i = 0; i < cells.Length; i++){
 			cells[i].Live();
 		}
+		for(int i = 0; i < cells.Length; i++){
+			cells[i].UpdateAt();
+		}
 	}
 
 	public List<Cell> GetAdjacentCells(int xPos, int yPos){
-		List<Cell> adjacentCells = new List<Cell>();
-		int right = ySize*xPos+yPos + xSize;
+		adjacentCellContainer.Clear();
+		arrayPosition = ySize*xPos+yPos;
+		yMaxLimit = (yPos == ySize-1 ? 0 : 1);
+		yMinLimit = (yPos == 0 ? 0 : 1);
+		right = arrayPosition + xSize;
 		if(right < cells.Length && right >= 0){
-			adjacentCells.Add(cells[right]);
+			adjacentCellContainer.Add(cells[right]);
 		}
-		int left = ySize*xPos+yPos - xSize;
+		left = arrayPosition - xSize;
 		if(left < cells.Length && left >= 0){
-			adjacentCells.Add(cells[left]);
+			adjacentCellContainer.Add(cells[left]);
 		}
-		int up = ySize*xPos+yPos + (yPos == ySize-1 ? 0 : 1);
+		up = arrayPosition + yMaxLimit;
 		if(up < cells.Length && up >= 0){
-			adjacentCells.Add(cells[up]);
+			adjacentCellContainer.Add(cells[up]);
 		}
-		int down = ySize*xPos+yPos - (yPos == 0 ? 0 : 1);
+		down = arrayPosition - yMinLimit;
 		if(down < cells.Length && down >= 0){
-			adjacentCells.Add(cells[down]);
+			adjacentCellContainer.Add(cells[down]);
 		}
 
-		int rightUp = ySize*xPos+yPos + xSize + (yPos == ySize-1 ? 0 : 1);
+		rightUp = arrayPosition + xSize + yMaxLimit;
 		if(rightUp < cells.Length && rightUp > 0){
-			adjacentCells.Add(cells[rightUp]);
+			adjacentCellContainer.Add(cells[rightUp]);
 		}
-		int leftUp = ySize*xPos+yPos - xSize + (yPos == ySize-1 ? 0 : 1);
+		leftUp = arrayPosition - xSize + yMaxLimit;
 		if(leftUp < cells.Length && leftUp > 0){
-			adjacentCells.Add(cells[leftUp]);
+			adjacentCellContainer.Add(cells[leftUp]);
 		}
-		int rightDown = ySize*xPos+yPos + xSize - (yPos == 0 ? 0 : 1);
+		rightDown = arrayPosition + xSize - yMinLimit;
 		if(rightDown < cells.Length && rightDown > 0){
-			adjacentCells.Add(cells[rightDown]);
+			adjacentCellContainer.Add(cells[rightDown]);
 		}
-		int leftDown = ySize*xPos+yPos - xSize - (yPos == 0 ? 0 : 1);
+		leftDown = arrayPosition - xSize - yMinLimit;
 		if(leftDown < cells.Length && leftDown > 0){
-			adjacentCells.Add(cells[leftDown]);
+			adjacentCellContainer.Add(cells[leftDown]);
 		}
-		return adjacentCells;
+		return adjacentCellContainer;
 	}
 
 	public Cell GetCell(int xPos, int yPos){
-		Debug.LogWarning((ySize*xPos+yPos) + "/" + cells.Length);
-		if(ySize*xPos+yPos < cells.Length && ySize*xPos+yPos >= 0){
-			return cells[ySize*xPos+yPos];
+		arrayPosition = ySize*xPos+yPos;
+		if(arrayPosition < cells.Length && arrayPosition >= 0){
+			return cells[arrayPosition];
 		} else {
 			return null;
 		}
