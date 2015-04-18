@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2310756}
   - 114: {fileID: 11486710}
   - 114: {fileID: 11475962}
+  - 111: {fileID: 11162252}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -75,6 +76,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!111 &11162252
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129956}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 33c819e79e9a04d1194289efbbc407e8, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &11475962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellScript: {fileID: 11486710}
+  cellAnimations: {fileID: 11162252}
 --- !u!114 &11486710
 MonoBehaviour:
   m_ObjectHideFlags: 1

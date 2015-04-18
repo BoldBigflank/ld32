@@ -4,12 +4,18 @@ using System.Collections;
 public class CellView : MonoBehaviour {
 	[SerializeField]
 	Cell cellScript;
+
+	[SerializeField]
+	Animation cellAnimations;
+
 	Color[] ownerColors = new Color[] { Color.white, Color.red, Color.blue } ;
 
 	public void Initialize(Cell newCell){
 		cellScript = newCell;
 		cellScript.CellUpdated += HandleCellUpdated;
 	}
+
+
 
 	void HandleCellUpdated (object sender, System.EventArgs e)
 	{
@@ -22,6 +28,9 @@ public class CellView : MonoBehaviour {
 		if(gameObject.GetComponent<Renderer>() != null){
 			gameObject.GetComponent<Renderer>().material.SetColor ("_Color", cellColor);
 		}
+
+		cellAnimations.Stop();
+		cellAnimations.Play("CellClick");
 	}
 	
 	// Update is called once per frame
