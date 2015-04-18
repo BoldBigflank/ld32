@@ -6,6 +6,8 @@ public class PlayerControl : MonoBehaviour {
 
 	[SerializeField]
 	Cursor cursor;
+	[SerializeField]
+	PlayerState state;
 
 	[SerializeField]
 	int playerNumber = 0;
@@ -74,10 +76,8 @@ public class PlayerControl : MonoBehaviour {
 				}
 			}
 		}
-		
-		if(actions.Activate.WasPressed){
-			setLive = true;
-		}
+
+		setLive = actions.Activate.WasPressed;
 		setSlow = actions.Slow.IsPressed;
 
 #endregion
@@ -87,7 +87,7 @@ public class PlayerControl : MonoBehaviour {
 		if(setLive){
 			cursor.Activate();
 		}
-		cursor.SetSlow(setSlow);
+		state.SetSlow(setSlow);
 		
 		xMove = 0;
 		yMove = 0;

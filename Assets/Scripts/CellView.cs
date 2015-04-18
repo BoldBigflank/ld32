@@ -22,6 +22,10 @@ public class CellView : MonoBehaviour {
 		HandleCellUpdated(this, new System.EventArgs());
 	}
 
+	void OnDestroy(){
+		cellScript.CellUpdated -= HandleCellUpdated;
+	}
+
 	void HandleCellUpdated (object sender, System.EventArgs e)
 	{
 		Color cellColor = ownerColors[cellScript.Owner];

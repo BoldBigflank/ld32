@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 
 	float playerSlowCount = 1.0f;
 
-	Cursor[] playerCursors;
+	PlayerState[] playerStates;
 
 	void Awake(){
 		Application.targetFrameRate = 60;
@@ -32,9 +32,9 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-		playerCursors = new Cursor[players.Length];
+		playerStates = new PlayerState[players.Length];
 		for(int i = 0; i < players.Length; i ++){
-			playerCursors[i] = players[i].GetComponent<Cursor>();
+			playerStates[i] = players[i].GetComponent<PlayerState>();
 		}
 	}
 	
@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour {
 		}
 
 		playerSlowCount = 1.0f;
-		for(int i = 0; i < playerCursors.Length; i++){
-			if(playerCursors[i].IsSlowing){
+		for(int i = 0; i < playerStates.Length; i++){
+			if(playerStates[i].IsSlowing){
 				playerSlowCount ++;
 			}
 		}
