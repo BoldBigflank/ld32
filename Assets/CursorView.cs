@@ -8,18 +8,18 @@ public class CursorView : MonoBehaviour {
 	[SerializeField]
 	GameObject cursorCorner;
 
+	[SerializeField]
+	PlayerControl playerControl;
+
+	Color[] ownerColors = new Color[] { Color.green, Color.red, Color.blue } ;
+
+	Renderer[] childRenderers;
+
 	// Use this for initialization
 	void Start () {
-		// Create 8 cursor corners
-//		for(int x = 0; x < 4; x++){
-//			for(int y = 0; y < 2; y++){
-//				GameObject cursorSegment = (GameObject)Instantiate (cursorCorner);
-//				cursorSegment.transform.Rotate(90.0F * x, 180.0F * y, 0.0F);
-//				cursorSegment.transform.parent = this.transform;
-//				cursorSegment.transform.localPosition = Vector3.zero;
-//			}
-//		}
-
+//		thisRenderer = gameObject.GetComponent<Renderer>();
+		childRenderers = gameObject.GetComponentsInChildren<Renderer>();
+		Debug.Log ("Found" + childRenderers.Length + " renderers");
 		cursorScript.CursorUpdated += HandleCursorUpdated;
 		HandleCursorUpdated(this, new System.EventArgs());
 	}
@@ -31,6 +31,13 @@ public class CursorView : MonoBehaviour {
 	void HandleCursorUpdated (object sender, System.EventArgs e)
 
 	{
+		Color cellColor = ownerColors[playerControl.PlayerNumber];
+
+		foreach(Renderer r in childRenderers){
+			Debug.Log ("Editing color" + cellColor);
+			r.material.SetColor("_Color", cellColor);
+		}
+
 		transform.position = new Vector3(cursorScript.XPos, cursorScript.YPos, 0.0F);
 	}
 
