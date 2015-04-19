@@ -5,8 +5,7 @@ public class CellView : MonoBehaviour {
 	[SerializeField]
 	Cell cellScript;
 
-	[SerializeField]
-	Animation cellAnimations;
+	Animator cellAnimator;
 
 	string[] owners = new string[] {"empty", "dinohulk", "tekkikat", "mistermango", "fred"};
 	enum states { Awake, Sleepy, Sleeping, Waking, Nightmare } ;
@@ -16,6 +15,8 @@ public class CellView : MonoBehaviour {
 	Renderer thisRenderer;
 
 	public void Initialize(Cell newCell){
+		cellAnimator = gameObject.GetComponent<Animator>();
+
 		cellScript = newCell;
 		cellScript.CellUpdated += HandleCellUpdated;
 
@@ -56,7 +57,8 @@ public class CellView : MonoBehaviour {
 //		thisRenderer.material.SetColor("_Color", cellColor);
 
 
-		cellAnimations.Stop();
-		cellAnimations.Play("CellClick");
+		cellAnimator.SetTrigger("clicked");
+//		cellAnimations.Stop();
+//		cellAnimations.Play("CellClick");
 	}
 }
