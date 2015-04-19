@@ -52,7 +52,7 @@ public class PlayerControl : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
+	public void UpdateAt () {
 #region input logic
 		cursorMovedTimer -= Time.deltaTime;
 		if(cursorMovedTimer < 0.0f){

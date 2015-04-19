@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-	
+
+	public event System.EventHandler MatchCompleted;
 	
 	[SerializeField]
 	Grid grid;
@@ -24,6 +25,18 @@ public class GameManager : MonoBehaviour {
 	float playerSlowCount = 1.0f;
 
 	PlayerState[] playerStates;
+	PlayerControl[] playerControls;
+
+	[SerializeField]
+	float matchTime = 10.0f;
+	public float MatchTime {
+		get { return matchTime; }
+	}
+	float matchTimer;
+	public float MatchTimer {
+		get { return matchTimer; }
+	}
+	bool matchComplete = false;
 
 	void Awake(){
 		Application.targetFrameRate = 60;
@@ -33,26 +46,54 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 		playerStates = new PlayerState[players.Length];
+		playerControls = new PlayerControl[players.Length];
 		for(int i = 0; i < players.Length; i ++){
 			playerStates[i] = players[i].GetComponent<PlayerState>();
+			playerControls[i] = players[i].GetComponent<PlayerControl>();
 		}
+		matchTimer = matchTime;
 	}
 	
 	// Update is called once per frame
 	void Update() {
 
-		roundTimer += deltaTime / playerSlowCount;
-		if(roundTimer > roundTime){
-			roundTimer = 0;
-			grid.UpdateTick();
+		if(matchTimer > 0.0f){
+			matchTimer -= deltaTime;
+			if(matchTimer <= 0.0f){
+				MatchEnd();
+				matchTimer = 0.0f;
+			}
 		}
 
-		playerSlowCount = 1.0f;
-		for(int i = 0; i < playerStates.Length; i++){
-			if(playerStates[i].IsSlowing){
-				playerSlowCount ++;
+		if(!matchComplete){
+			for(int i = 0; i < playerControls.Length; i ++){
+				playerControls[i].UpdateAt();
 			}
-			playerStates[i].UpdateScore(grid.GetScore(playerStates[i].PlayerNumber));
+			for(int i = 0; i < playerStates.Length; i ++){
+				playerStates[i].UpdateAt();
+			}
+
+			roundTimer += deltaTime / playerSlowCount;
+			if(roundTimer > roundTime){
+				roundTimer = 0;
+				grid.UpdateTick();
+			}
+
+			playerSlowCount = 1.0f;
+			for(int i = 0; i < playerStates.Length; i++){
+				if(playerStates[i].IsSlowing){
+					playerSlowCount ++;
+				}
+				playerStates[i].UpdateScore(grid.GetScore(playerStates[i].PlayerNumber));
+			}
 		}
+	}
+
+	private void MatchEnd(){
+		matchComplete = true;
+		if(MatchCompleted != null){
+			MatchCompleted(this, new System.EventArgs());
+		}
+
 	}
 }

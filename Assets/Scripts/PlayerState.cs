@@ -39,7 +39,7 @@ public class PlayerState : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	public void UpdateAt () {
 		// Limit use of the slow time
 		if(isSlowing){
 			slowTimeLeft -= Time.deltaTime;
