@@ -8,9 +8,6 @@ public class CursorView : MonoBehaviour {
 	[SerializeField]
 	GameObject cursorCorner;
 
-	[SerializeField]
-	PlayerControl playerControl;
-
 	Color[] ownerColors = new Color[] { Color.green, Color.red, Color.blue } ;
 
 	Renderer[] childRenderers;
@@ -29,9 +26,8 @@ public class CursorView : MonoBehaviour {
 	}
 
 	void HandleCursorUpdated (object sender, System.EventArgs e)
-
 	{
-		Color cellColor = ownerColors[playerControl.PlayerNumber];
+		Color cellColor = ownerColors[cursorScript.PlayerNumber];
 
 		foreach(Renderer r in childRenderers){
 			Debug.Log ("Editing color" + cellColor);
@@ -41,10 +37,4 @@ public class CursorView : MonoBehaviour {
 		transform.position = new Vector3(cursorScript.XPos, cursorScript.YPos, 0.0F);
 	}
 
-
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
