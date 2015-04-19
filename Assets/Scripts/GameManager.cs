@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+public class MatchWinArgs : System.EventArgs {
+	public int winner;
+
+	public MatchWinArgs(int newWinner) {
+		winner = newWinner;
+	}
+}
+
 public class GameManager : MonoBehaviour {
 
 	public event System.EventHandler MatchCompleted;
@@ -25,6 +34,7 @@ public class GameManager : MonoBehaviour {
 	float playerSlowCount = 1.0f;
 
 	PlayerState[] playerStates;
+
 	PlayerControl[] playerControls;
 
 	[SerializeField]
@@ -93,7 +103,7 @@ public class GameManager : MonoBehaviour {
 		matchComplete = true;
 		int winner = grid.GetFirstPlacePlayer();
 		if(MatchCompleted != null){
-			MatchCompleted(this, new System.EventArgs());
+			MatchCompleted(this, new MatchWinArgs(winner));
 		}
 
 	}

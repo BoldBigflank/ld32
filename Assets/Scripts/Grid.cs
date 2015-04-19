@@ -56,7 +56,7 @@ public class Grid : MonoBehaviour {
 			cells[i].Live();
 		}
 		List<int> keyList = new List<int>(playerScores.Keys);
-		for(int i = 0; i < keyList.Count; i++){
+		for(int i = 1; i < keyList.Count; i++){
 			playerScores[keyList[i]] = 0;
 		}
 		for(int i = 0; i < cells.Length; i++){
@@ -64,7 +64,7 @@ public class Grid : MonoBehaviour {
 			if(!cells[i].Alive){
 				if(playerScores.ContainsKey(cells[i].Owner)){
 					playerScores[cells[i].Owner] ++;
-				} else {
+				} else if (cells[i].Owner > 0) {
 					playerScores.Add(cells[i].Owner, 1);
 				}
 			}
@@ -160,3 +160,4 @@ public class Grid : MonoBehaviour {
 		return lastPlaceOwner;
 	}
 }
+
