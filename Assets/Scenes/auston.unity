@@ -692,14 +692,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11419814, guid: b2b27f3348e5a48b4bc8662ba4e8a11b, type: 2}
-      propertyPath: xSize
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11419814, guid: b2b27f3348e5a48b4bc8662ba4e8a11b, type: 2}
-      propertyPath: ySize
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2b27f3348e5a48b4bc8662ba4e8a11b, type: 2}
   m_IsPrefabParent: 0
@@ -746,10 +738,10 @@ Prefab:
       propertyPath: grid
       value: 
       objectReference: {fileID: 917406273}
-    - target: {fileID: 11405750, guid: a214f0ed46d51413fbd677b6ecaa91cf, type: 2}
-      propertyPath: playerControl
+    - target: {fileID: 11478288, guid: a214f0ed46d51413fbd677b6ecaa91cf, type: 2}
+      propertyPath: playerState
       value: 
-      objectReference: {fileID: 1258293590}
+      objectReference: {fileID: 1258293591}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a214f0ed46d51413fbd677b6ecaa91cf, type: 2}
   m_IsPrefabParent: 0
@@ -868,6 +860,10 @@ Prefab:
       propertyPath: playerControl
       value: 
       objectReference: {fileID: 1683324901}
+    - target: {fileID: 11478288, guid: a214f0ed46d51413fbd677b6ecaa91cf, type: 2}
+      propertyPath: playerState
+      value: 
+      objectReference: {fileID: 1683324902}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a214f0ed46d51413fbd677b6ecaa91cf, type: 2}
   m_IsPrefabParent: 0
@@ -922,14 +918,6 @@ Prefab:
       propertyPath: timerBar
       value: 
       objectReference: {fileID: 25277700}
-    - target: {fileID: 11468152, guid: 5eb2bdbd1e4ad447eae8c935a4672084, type: 2}
-      propertyPath: roundTime
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468152, guid: 5eb2bdbd1e4ad447eae8c935a4672084, type: 2}
-      propertyPath: matchTime
-      value: 10000
-      objectReference: {fileID: 0}
     - target: {fileID: 11487606, guid: 5eb2bdbd1e4ad447eae8c935a4672084, type: 2}
       propertyPath: matchTime
       value: 

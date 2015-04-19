@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour {
 
 	private void MatchEnd(){
 		matchComplete = true;
+		int winner = grid.GetFirstPlacePlayer();
 		if(MatchCompleted != null){
 			MatchCompleted(this, new System.EventArgs());
 		}

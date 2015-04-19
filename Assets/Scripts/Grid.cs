@@ -41,7 +41,7 @@ public class Grid : MonoBehaviour {
 				GameObject cellObject = (GameObject)Instantiate (cellPrefab);
 				cellObject.transform.parent = transform;
 				cells[ySize*x+y] = cellObject.GetComponent<Cell>();
-				cells[ySize*x+y].Initialize(x, y);
+				cells[ySize*x+y].Initialize(x, y, this);
 				CellView cellView = cellObject.GetComponent<CellView>();
 				cellView.Initialize(cells[ySize*x+y]);
 			}
@@ -132,5 +132,31 @@ public class Grid : MonoBehaviour {
 		int scoreValue = 0;
 		playerScores.TryGetValue(playerNumber, out scoreValue);
 		return scoreValue;
+	}
+
+	public int GetFirstPlacePlayer(){
+		int firstPlaceOwner = 0;
+		int highestScore = 0;
+		List<int> keyList = new List<int>(playerScores.Keys);
+		for(int i = 0; i < keyList.Count; i++){
+			if(playerScores[keyList[i]] > highestScore){
+				firstPlaceOwner = keyList[i];
+				highestScore = playerScores[keyList[i]];
+			}
+		}
+		return firstPlaceOwner;
+	}
+
+	public int GetLastPlacePlayer(){
+		int lastPlaceOwner = 0;
+		int lowestScore = 0;
+		List<int> keyList = new List<int>(playerScores.Keys);
+		for(int i = 0; i < keyList.Count; i++){
+			if(playerScores[keyList[i]] < lowestScore){
+				lastPlaceOwner = keyList[i];
+				lowestScore = playerScores[keyList[i]];
+			}
+		}
+		return lastPlaceOwner;
 	}
 }

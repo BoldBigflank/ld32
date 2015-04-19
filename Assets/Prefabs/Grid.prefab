@@ -40,8 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 129956, guid: 397e18329285c46748ccfb2988b949fc, type: 2}
-  xSize: 50
-  ySize: 50
+  xSize: 25
+  ySize: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -30,6 +30,28 @@ public class Cursor : MonoBehaviour {
 	
 	void Start(){
 		blankEvent = new System.EventArgs();
+		switch(playerState.PlayerNumber){
+		case 1:
+			xPos = 0;
+			yPos = grid.YSize-1;
+			break;
+		case 2:
+			xPos = grid.XSize-1;
+			yPos = grid.YSize-1;
+			break;
+		case 3:
+			xPos = 0;
+			yPos = 0;
+			break;
+		case 4:
+			xPos = grid.XSize-1;
+			yPos = 0;
+			break;
+		default:
+			xPos = Random.Range(0, grid.XSize);
+			yPos = Random.Range(0, grid.YSize);
+			break;
+		}
 	}
 
 	public void Activate(){

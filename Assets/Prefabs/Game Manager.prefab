@@ -41,8 +41,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  roundTime: 512
+  roundTime: 1024
   deltaTime: 16
+  matchTime: 100000
 --- !u!114 &11487606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 11468152}
   timerBar: {fileID: 0}
+  matchTime: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
