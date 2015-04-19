@@ -32,6 +32,8 @@ public class Grid : MonoBehaviour {
 	int leftUp = 0;
 	int leftDown = 0;
 
+	Dictionary<int, int> playerScores = new Dictionary<int, int>();
+
 	void Start(){
 		cells = new Cell[xSize * ySize];
 		for(int x = 0; x < xSize; x ++){
@@ -53,8 +55,19 @@ public class Grid : MonoBehaviour {
 		for(int i = 0; i < cells.Length; i++){
 			cells[i].Live();
 		}
+		List<int> keyList = new List<int>(playerScores.Keys);
+		for(int i = 0; i < keyList.Count; i++){
+			playerScores[keyList[i]] = 0;
+		}
 		for(int i = 0; i < cells.Length; i++){
-			cells[i].UpdateAt();
+			cells[i].UpdateLive();
+			if(!cells[i].Alive){
+				if(playerScores.ContainsKey(cells[i].Owner)){
+					playerScores[cells[i].Owner] ++;
+				} else {
+					playerScores.Add(cells[i].Owner, 1);
+				}
+			}
 		}
 	}
 
@@ -110,5 +123,11 @@ public class Grid : MonoBehaviour {
 	
 	private int GetCellArrayIndex(int xPos, int yPos){
 		return ySize*xPos+yPos;
+	}
+
+	public int GetScore(int playerNumber){
+		int scoreValue = 0;
+		playerScores.TryGetValue(playerNumber, out scoreValue);
+		return scoreValue;
 	}
 }

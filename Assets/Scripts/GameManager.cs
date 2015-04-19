@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour {
 			if(playerStates[i].IsSlowing){
 				playerSlowCount ++;
 			}
+			playerStates[i].UpdateScore(grid.GetScore(playerStates[i].PlayerNumber));
 		}
 	}
 }

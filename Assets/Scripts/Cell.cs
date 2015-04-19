@@ -89,7 +89,7 @@ public class Cell : MonoBehaviour {
 
 	}
 
-	public void UpdateAt(){
+	public void UpdateLive(){
 		if(alive != nextState){
 			alive = nextState;
 			if(CellUpdated != null){
@@ -105,8 +105,8 @@ public class Cell : MonoBehaviour {
 		}
 	}
 
-	void OnDrawGizmos(){
-		Gizmos.color = alive ? Color.white : Color.black;
-		Gizmos.DrawWireCube(new Vector3(xPos, yPos, 0), new Vector3(1,1,1));
-	}
+//	void OnDrawGizmos(){
+//		Gizmos.color = alive ? Color.white : Color.black;
+//		Gizmos.DrawWireCube(new Vector3(xPos, yPos, 0), new Vector3(1,1,1));
+//	}
 }
