@@ -91,6 +91,7 @@ public class Cell : MonoBehaviour {
 //		Any live cell with fewer than two live neighbours dies, as if caused by under-population.
 		if(alive && liveCount < 2){
 			nextState = false;
+			nextOwner = 0;
 		}
 //		Any live cell with two or three live neighbours lives on to the next generation.
 		else if(alive && liveCount == 2 || liveCount == 3){
@@ -100,6 +101,7 @@ public class Cell : MonoBehaviour {
 //		Any live cell with more than three live neighbours dies, as if by overcrowding.
 		else if(alive && liveCount > 3){
 			nextState = false;
+			nextOwner = 0;
 		}
 //		Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 		else if(!alive && liveCount == 3){
