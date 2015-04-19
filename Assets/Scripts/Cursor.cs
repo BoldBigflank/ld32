@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class Cursor : MonoBehaviour {
+	public event System.EventHandler CursorUpdated;
+
+	System.EventArgs blankEvent;
 
 	[SerializeField]
 	Grid grid;
@@ -17,7 +20,11 @@ public class Cursor : MonoBehaviour {
 	public int YPos {
 		get { return yPos; }
 	}
-	
+
+	void Start(){
+		blankEvent = new System.EventArgs();
+	}
+
 	public void Activate(){
 		Cell cell = grid.GetCell(xPos, yPos);
 		if(cell != null){
@@ -31,6 +38,10 @@ public class Cursor : MonoBehaviour {
 		}
 		if(yPos + y >= 0 && yPos + y < grid.YSize){
 			yPos += y;
+		}
+
+		if(CursorUpdated != null){
+			CursorUpdated(this, blankEvent);
 		}
 	}
 }
