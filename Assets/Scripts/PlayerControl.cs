@@ -11,6 +11,9 @@ public class PlayerControl : MonoBehaviour {
 
 	[SerializeField]
 	int playerNumber = 0;
+	public int PlayerNumber {
+		get { return playerNumber; }
+	}
 	[SerializeField]
 	Key keyActivate = Key.E;
 	[SerializeField]
