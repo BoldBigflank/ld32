@@ -11,8 +11,8 @@ public class MatchWinArgs : System.EventArgs {
 public class GameManager : MonoBehaviour {
 
 	public event System.EventHandler MatchCompleted;
-	
-	[SerializeField]
+	public event System.EventHandler MatchTimerCompleted;
+
 	protected Grid grid;
 
 	[SerializeField]
@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour {
 	[SerializeField]
 	protected float deltaTime = 16.0f;
 
-	float playerSlowCount = 1.0f;
-
 	protected PlayerState[] playerStates;
 	protected PlayerControl[] playerControls;
 
@@ -43,20 +41,15 @@ public class GameManager : MonoBehaviour {
 	public float MatchTimer {
 		get { return matchTimer; }
 	}
-	bool matchComplete = false;
 
 	void Awake(){
 		Application.targetFrameRate = 60;
 	}
 
-	[SerializeField]
-	bool updatePerRound = false;
-
-	[SerializeField]
-	protected int postMatchRounds = 100;
-
 	// Use this for initialization
-	protected void Start () {
+	protected virtual void Start () {
+		grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
+
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 		playerStates = new PlayerState[players.Length];
 		playerControls = new PlayerControl[players.Length];
@@ -64,75 +57,41 @@ public class GameManager : MonoBehaviour {
 			playerStates[i] = players[i].GetComponent<PlayerState>();
 			playerControls[i] = players[i].GetComponent<PlayerControl>();
 		}
-		matchTimer = matchTime;
 	}
-	
-	// Update is called once per frame
-	void Update() {
 
-		if(matchTimer > 0.0f){
-			matchTimer -= deltaTime;
-			if(matchTimer <= 0.0f){
-				MatchEnd();
-				matchTimer = 0.0f;
+	protected bool CountDownTimer(ref float currentTimer, float newDeltaTime){
+		if(currentTimer > 0.0f){
+			currentTimer -= newDeltaTime;
+			if(currentTimer <= 0.0f){
+				currentTimer = 0.0f;
+				return true;
 			}
 		}
+		return false;
+	}
 
-		if(!matchComplete){
-			for(int i = 0; i < playerControls.Length; i ++){
-				playerControls[i].UpdateAt();
-			}
-			for(int i = 0; i < playerStates.Length; i ++){
-				playerStates[i].UpdateAt();
-			}
-
-			if(updatePerRound){
-				roundTimer += deltaTime / playerSlowCount;
-				if(roundTimer > roundTime){
-					roundTimer = 0;
-					grid.UpdateTick();
-				}
-			}
-
-			playerSlowCount = 1.0f;
-			for(int i = 0; i < playerStates.Length; i++){
-				if(playerStates[i].IsSlowing){
-					playerSlowCount ++;
-				}
-				playerStates[i].UpdateScore(grid.GetScore(playerStates[i].PlayerNumber));
-			}
+	protected void UpdatePlayerControls(){
+		for(int i = 0; i < playerControls.Length; i ++){
+			playerControls[i].UpdateAt();
 		}
-
-		if(matchComplete){
-			if(postMatchRounds > 0){
-				roundTimer += deltaTime / playerSlowCount;
-				if(roundTimer > roundTime){
-					roundTimer = 0;
-					grid.UpdateTick();
-					postMatchRounds --;
-					if(postMatchRounds == 0){
-						MatchEnd();
-					}
-				}
-			}
+		for(int i = 0; i < playerStates.Length; i ++){
+			playerStates[i].UpdateAt();
 		}
+	}
 
+	protected float GetPlayerSlowCount(){
+		float slowCount = 1.0f;
 		for(int i = 0; i < playerStates.Length; i++){
-			playerStates[i].UpdateScore(grid.GetScore(playerStates[i].PlayerNumber));
+			if(playerStates[i].IsSlowing){
+				slowCount ++;
+			}
 		}
+		return slowCount;
 	}
 
-	private void MatchEnd(){
-		matchComplete = true;
-		if(postMatchRounds == 0){
-			postMatchRounds = 3;
-			matchComplete = false;
-			matchTimer = matchTime;
-//			int winner = grid.GetFirstPlacePlayer();
-//			if(MatchCompleted != null){
-//				MatchCompleted(this, new MatchWinArgs(winner));
-//			}
+	protected void SendMatchCompleted(int winner){
+		if(MatchCompleted != null){
+			MatchCompleted(this, new MatchWinArgs(winner));
 		}
-
 	}
 }

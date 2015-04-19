@@ -1,47 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &103602
+--- !u!1 &137144
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 436792}
-  - 114: {fileID: 11419814}
+  - 4: {fileID: 431454}
+  - 114: {fileID: 11476986}
   m_Layer: 0
-  m_Name: Grid
-  m_TagString: Grid
+  m_Name: Game Mode Attack
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &436792
+  m_IsActive: 0
+--- !u!4 &431454
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103602}
+  m_GameObject: {fileID: 137144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11419814
+--- !u!114 &11476986
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103602}
+  m_GameObject: {fileID: 137144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962006bafbb3a484db9508703277426c, type: 3}
+  m_Script: {fileID: 11500000, guid: d5b74bcecaa474c07b2fa08f3aa8f80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 129956, guid: 397e18329285c46748ccfb2988b949fc, type: 2}
-  xSize: 10
-  ySize: 10
+  roundTime: 128
+  deltaTime: 16
+  matchTime: 10000
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -51,5 +51,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 103602}
+  m_RootGameObject: {fileID: 137144}
   m_IsPrefabParent: 1

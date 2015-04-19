@@ -55,10 +55,15 @@ public class Grid : MonoBehaviour {
 		for(int i = 0; i < cells.Length; i++){
 			cells[i].Live();
 		}
+	}
+
+	public void SetScoresFromOwnedDeadCells(){
+		// reset all player scores
 		List<int> keyList = new List<int>(playerScores.Keys);
 		for(int i = 0; i < keyList.Count; i++){
 			playerScores[keyList[i]] = 0;
 		}
+		// add total score values
 		for(int i = 0; i < cells.Length; i++){
 			cells[i].UpdateLive();
 			if(!cells[i].Alive){

@@ -5,8 +5,7 @@ public class Cursor : MonoBehaviour {
 	public event System.EventHandler CursorUpdated;
 
 	System.EventArgs blankEvent;
-
-	[SerializeField]
+	
 	Grid grid;
 
 	[SerializeField]
@@ -29,6 +28,9 @@ public class Cursor : MonoBehaviour {
 	}
 	
 	void Start(){
+		
+		grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
+
 		blankEvent = new System.EventArgs();
 		switch(playerState.PlayerNumber){
 		case 1:

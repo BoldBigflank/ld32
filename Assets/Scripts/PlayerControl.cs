@@ -10,11 +10,6 @@ public class PlayerControl : MonoBehaviour {
 	PlayerState state;
 
 	[SerializeField]
-	int playerNumber = 0;
-	public int PlayerNumber {
-		get { return playerNumber; }
-	}
-	[SerializeField]
 	Key keyActivate = Key.E;
 	[SerializeField]
 	Key keyLeft = Key.A;
@@ -47,8 +42,8 @@ public class PlayerControl : MonoBehaviour {
 		actions.Down.AddDefaultBinding( keyDown );
 		actions.Slow.AddDefaultBinding( keySlow );
 
-		if(InputManager.Devices.Count > playerNumber){
-			actions.Device = InputManager.Devices[playerNumber-1];
+		if(InputManager.Devices.Count > state.PlayerNumber){
+			actions.Device = InputManager.Devices[state.PlayerNumber-1];
 			actions.Activate.AddDefaultBinding( InputControlType.Action1 );
 			actions.Left.AddDefaultBinding( InputControlType.LeftStickLeft );
 			actions.Left.AddDefaultBinding( InputControlType.DPadLeft );

@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GameUIView : MonoBehaviour {
-
-	[SerializeField]
+	
 	GameManager manager;
 
 	[SerializeField]
@@ -15,7 +14,7 @@ public class GameUIView : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 	}
 	
 	// Update is called once per frame

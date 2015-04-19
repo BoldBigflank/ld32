@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ResultUIView : MonoBehaviour {
-	[SerializeField]
+
 	GameManager manager;
 
 	[SerializeField]
@@ -14,6 +14,7 @@ public class ResultUIView : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 		manager.MatchCompleted += HandleMatchCompleted;
 	}
 

@@ -25,17 +25,7 @@ public class MaterialManager : MonoBehaviour {
 	public Material GetCellMaterial(string name, string state){
 		Material mat = null;
 		materialDict.TryGetValue(name + state + "Mat", out mat);
-		Debug.Log (mat);
+//		Debug.Log (mat);
 		return mat;
-	}
-
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
