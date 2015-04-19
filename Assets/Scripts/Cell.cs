@@ -83,7 +83,7 @@ public class Cell : MonoBehaviour {
 				int ownerNumber = 0;
 				if(adjacentOwnerDict.TryGetValue(adjacentCells[i].owner, out ownerNumber)){
 					adjacentOwnerDict[adjacentCells[i].owner] += 1;
-				} else {
+				} else if(adjacentCells[i].owner > 0) {
 					adjacentOwnerDict.Add(adjacentCells[i].owner, 1);
 				}
 			}
@@ -113,6 +113,9 @@ public class Cell : MonoBehaviour {
 		int mostOwner = owner;
 		List<int> ownerKeys = new List<int>(adjacentOwnerDict.Keys);
 		for(int i = 0; i < ownerKeys.Count; i ++){
+			if(mostOwner == 0 && ownerKeys[i] != 0){
+				mostOwner = ownerKeys[i];
+			}
 			if(adjacentOwnerDict[ownerKeys[i]] > mostOwner){
 				mostOwner = ownerKeys[i];
 			} else if (adjacentOwnerDict[ownerKeys[i]] == mostOwner){
@@ -145,7 +148,7 @@ public class Cell : MonoBehaviour {
 			return false;
 		}
 		alive = true;
-		owner = o;
+		owner = nextOwner = o;
 
 		if(CellUpdated != null){
 			CellUpdated(this, blankEvent);

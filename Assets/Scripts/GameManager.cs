@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public class MatchWinArgs : System.EventArgs {
 	public int winner;
-
-	public MatchWinArgs(int newWinner) {
+	public MatchWinArgs(int newWinner){
 		winner = newWinner;
 	}
 }
@@ -15,34 +13,33 @@ public class GameManager : MonoBehaviour {
 	public event System.EventHandler MatchCompleted;
 	
 	[SerializeField]
-	Grid grid;
+	protected Grid grid;
 
 	[SerializeField]
-	float roundTime = 1.0f;
+	protected float roundTime = 1.0f;
 	public float RoundTime {
 		get { return roundTime; }
 	}
 
-	float roundTimer;
+	protected float roundTimer;
 	public float RoundTimer {
 		get { return roundTimer; }
 	}
 
 	[SerializeField]
-	float deltaTime = 16.0f;
+	protected float deltaTime = 16.0f;
 
 	float playerSlowCount = 1.0f;
 
-	PlayerState[] playerStates;
-
-	PlayerControl[] playerControls;
+	protected PlayerState[] playerStates;
+	protected PlayerControl[] playerControls;
 
 	[SerializeField]
-	float matchTime = 10.0f;
+	protected float matchTime = 10.0f;
 	public float MatchTime {
 		get { return matchTime; }
 	}
-	float matchTimer;
+	protected float matchTimer;
 	public float MatchTimer {
 		get { return matchTimer; }
 	}
@@ -52,8 +49,14 @@ public class GameManager : MonoBehaviour {
 		Application.targetFrameRate = 60;
 	}
 
+	[SerializeField]
+	bool updatePerRound = false;
+
+	[SerializeField]
+	protected int postMatchRounds = 100;
+
 	// Use this for initialization
-	void Start () {
+	protected void Start () {
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 		playerStates = new PlayerState[players.Length];
 		playerControls = new PlayerControl[players.Length];
@@ -83,10 +86,12 @@ public class GameManager : MonoBehaviour {
 				playerStates[i].UpdateAt();
 			}
 
-			roundTimer += deltaTime / playerSlowCount;
-			if(roundTimer > roundTime){
-				roundTimer = 0;
-				grid.UpdateTick();
+			if(updatePerRound){
+				roundTimer += deltaTime / playerSlowCount;
+				if(roundTimer > roundTime){
+					roundTimer = 0;
+					grid.UpdateTick();
+				}
 			}
 
 			playerSlowCount = 1.0f;
@@ -97,13 +102,36 @@ public class GameManager : MonoBehaviour {
 				playerStates[i].UpdateScore(grid.GetScore(playerStates[i].PlayerNumber));
 			}
 		}
+
+		if(matchComplete){
+			if(postMatchRounds > 0){
+				roundTimer += deltaTime / playerSlowCount;
+				if(roundTimer > roundTime){
+					roundTimer = 0;
+					grid.UpdateTick();
+					postMatchRounds --;
+					if(postMatchRounds == 0){
+						MatchEnd();
+					}
+				}
+			}
+		}
+
+		for(int i = 0; i < playerStates.Length; i++){
+			playerStates[i].UpdateScore(grid.GetScore(playerStates[i].PlayerNumber));
+		}
 	}
 
 	private void MatchEnd(){
 		matchComplete = true;
-		int winner = grid.GetFirstPlacePlayer();
-		if(MatchCompleted != null){
-			MatchCompleted(this, new MatchWinArgs(winner));
+		if(postMatchRounds == 0){
+			postMatchRounds = 3;
+			matchComplete = false;
+			matchTimer = matchTime;
+//			int winner = grid.GetFirstPlacePlayer();
+//			if(MatchCompleted != null){
+//				MatchCompleted(this, new MatchWinArgs(winner));
+//			}
 		}
 
 	}

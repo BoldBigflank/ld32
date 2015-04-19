@@ -56,7 +56,7 @@ public class Grid : MonoBehaviour {
 			cells[i].Live();
 		}
 		List<int> keyList = new List<int>(playerScores.Keys);
-		for(int i = 1; i < keyList.Count; i++){
+		for(int i = 0; i < keyList.Count; i++){
 			playerScores[keyList[i]] = 0;
 		}
 		for(int i = 0; i < cells.Length; i++){

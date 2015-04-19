@@ -46,8 +46,22 @@ public class PlayerControl : MonoBehaviour {
 		actions.Up.AddDefaultBinding( keyUp );
 		actions.Down.AddDefaultBinding( keyDown );
 		actions.Slow.AddDefaultBinding( keySlow );
-		actions.Device = InputManager.ActiveDevice;
 
+		if(InputManager.Devices.Count > playerNumber){
+			actions.Device = InputManager.Devices[playerNumber-1];
+			actions.Activate.AddDefaultBinding( InputControlType.Action1 );
+			actions.Left.AddDefaultBinding( InputControlType.LeftStickLeft );
+			actions.Left.AddDefaultBinding( InputControlType.DPadLeft );
+			actions.Right.AddDefaultBinding( InputControlType.LeftStickRight );
+			actions.Right.AddDefaultBinding( InputControlType.DPadRight );
+			actions.Up.AddDefaultBinding( InputControlType.LeftStickUp );
+			actions.Up.AddDefaultBinding( InputControlType.DPadUp );
+			actions.Down.AddDefaultBinding( InputControlType.LeftStickDown );
+			actions.Down.AddDefaultBinding( InputControlType.DPadDown );
+			actions.Slow.AddDefaultBinding( InputControlType.Action2 );
+		} else {
+			actions.Device = InputManager.ActiveDevice;
+		}
 	}
 
 

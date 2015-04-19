@@ -53,22 +53,22 @@ namespace InControl
 		{
 			CheckForPauseButton();
 
-//			var inputDevice = InputManager.ActiveDevice;
-//			if (inputDevice.Direction.Left.WasPressed)
-//			{
-//				Debug.Log( "Left.WasPressed" );
-//			}
-//			if (inputDevice.Direction.Left.WasReleased)
-//			{
-//				Debug.Log( "Left.WasReleased" );
-//			}
+			var inputDevice = InputManager.ActiveDevice;
+			if (inputDevice.Direction.Left.WasPressed)
+			{
+				Debug.Log( "Left.WasPressed" );
+			}
+			if (inputDevice.Direction.Left.WasReleased)
+			{
+				Debug.Log( "Left.WasReleased" );
+			}
 		}
 
 
 		void Start()
 		{
-//			var unityDeviceManager = InputManager.GetDeviceManager<UnityInputDeviceManager>();
-//			unityDeviceManager.ReloadDevices();
+			var unityDeviceManager = InputManager.GetDeviceManager<UnityInputDeviceManager>();
+			unityDeviceManager.ReloadDevices();
 		}
 
 
