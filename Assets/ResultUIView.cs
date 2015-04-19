@@ -7,7 +7,7 @@ public class ResultUIView : MonoBehaviour {
 	GameManager manager;
 
 	[SerializeField]
-	GameObject panelResultUI;
+	Animation panelAnimations;
 
 	[SerializeField]
 	Text matchWinner;
@@ -26,5 +26,7 @@ public class ResultUIView : MonoBehaviour {
 		MatchWinArgs matchWinArgs = (MatchWinArgs)e;
 		matchWinner.text = "Player " + matchWinArgs.winner + " Wins!";
 
+		panelAnimations.Stop();
+		panelAnimations.Play("ShowResultPanel");
 	}
 }
