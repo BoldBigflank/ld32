@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c7942e4542f4854bfa39ba0de6ff2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 1
+  playerNumber: 3
   playerIcon: {fileID: 11451736}
   playerName: {fileID: 11489264}
   playerScore: {fileID: 11468168}
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c7942e4542f4854bfa39ba0de6ff2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 1
+  playerNumber: 2
   playerIcon: {fileID: 11447204}
   playerName: {fileID: 11448754}
   playerScore: {fileID: 11463560}
@@ -1517,7 +1517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c7942e4542f4854bfa39ba0de6ff2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 1
+  playerNumber: 4
   playerIcon: {fileID: 11415854}
   playerName: {fileID: 11461400}
   playerScore: {fileID: 11428526}
@@ -1895,7 +1895,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640, y: -100}
+  m_AnchoredPosition: {x: 640, y: -48}
   m_SizeDelta: {x: 530, y: 62}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22415930

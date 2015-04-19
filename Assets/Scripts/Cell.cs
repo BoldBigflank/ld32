@@ -44,7 +44,7 @@ public class Cell : MonoBehaviour {
 		xPos = newXPos;
 		yPos = newYPos;
 		if(Random.Range(0,2) > 0){
-			alive = true;
+			alive = false;
 		}
 
 		blankEvent = new System.EventArgs();
@@ -54,12 +54,14 @@ public class Cell : MonoBehaviour {
 	}
 
 	public void InitializeAdjacentCells(Grid grid){
+		string adjacentList = "";
 		adjacentCells.Clear();
 		List<Cell> foundCells = grid.GetAdjacentCells(xPos, yPos);
 		for(int i = 0; i < foundCells.Count; i++){
 			adjacentCells.Add(foundCells[i]);
+			adjacentList += "[" + foundCells[i].xPos + "," + foundCells[i].yPos + "]";
 		}
-
+		Debug.LogWarning("Cell " + xPos + ", " + yPos + " adjacent Cells: " + adjacentList);
 	}
 
 	public void Live(){

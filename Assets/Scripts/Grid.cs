@@ -84,30 +84,33 @@ public class Grid : MonoBehaviour {
 		if(left < cells.Length && left >= 0){
 			adjacentCellContainer.Add(cells[left]);
 		}
-		up = arrayPosition + yMaxLimit;
-		if(up < cells.Length && up >= 0){
-			adjacentCellContainer.Add(cells[up]);
+		if(yMaxLimit != 0){
+			up = arrayPosition + yMaxLimit;
+			if(up < cells.Length && up >= 0){
+				adjacentCellContainer.Add(cells[up]);
+			}
+			rightUp = arrayPosition + xSize + yMaxLimit;
+			if(rightUp < cells.Length && rightUp > 0){
+				adjacentCellContainer.Add(cells[rightUp]);
+			}
+			leftUp = arrayPosition - xSize + yMaxLimit;
+			if(leftUp < cells.Length && leftUp > 0){
+				adjacentCellContainer.Add(cells[leftUp]);
+			}
 		}
-		down = arrayPosition - yMinLimit;
-		if(down < cells.Length && down >= 0){
-			adjacentCellContainer.Add(cells[down]);
-		}
-
-		rightUp = arrayPosition + xSize + yMaxLimit;
-		if(rightUp < cells.Length && rightUp > 0){
-			adjacentCellContainer.Add(cells[rightUp]);
-		}
-		leftUp = arrayPosition - xSize + yMaxLimit;
-		if(leftUp < cells.Length && leftUp > 0){
-			adjacentCellContainer.Add(cells[leftUp]);
-		}
-		rightDown = arrayPosition + xSize - yMinLimit;
-		if(rightDown < cells.Length && rightDown > 0){
-			adjacentCellContainer.Add(cells[rightDown]);
-		}
-		leftDown = arrayPosition - xSize - yMinLimit;
-		if(leftDown < cells.Length && leftDown > 0){
-			adjacentCellContainer.Add(cells[leftDown]);
+		if(yMinLimit != 0){
+			down = arrayPosition - yMinLimit;
+			if(down < cells.Length && down >= 0){
+				adjacentCellContainer.Add(cells[down]);
+			}
+			rightDown = arrayPosition + xSize - yMinLimit;
+			if(rightDown < cells.Length && rightDown > 0){
+				adjacentCellContainer.Add(cells[rightDown]);
+			}
+			leftDown = arrayPosition - xSize - yMinLimit;
+			if(leftDown < cells.Length && leftDown > 0){
+				adjacentCellContainer.Add(cells[leftDown]);
+			}
 		}
 		return adjacentCellContainer;
 	}
