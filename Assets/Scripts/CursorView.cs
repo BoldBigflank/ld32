@@ -8,7 +8,7 @@ public class CursorView : MonoBehaviour {
 	[SerializeField]
 	GameObject cursorCorner;
 
-	Color[] ownerColors = new Color[] { Color.green, Color.red, Color.blue } ;
+	Color[] ownerColors = new Color[] { Color.white, Color.green, Color.gray, Color.blue } ;
 
 	Renderer[] childRenderers;
 
