@@ -17,9 +17,7 @@ public class CursorView : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-//		thisRenderer = gameObject.GetComponent<Renderer>();
 		childRenderers = gameObject.GetComponentsInChildren<Renderer>();
-		Debug.Log ("Found" + childRenderers.Length + " renderers");
 		cursorScript.CursorUpdated += HandleCursorUpdated;
 		HandleCursorUpdated(this, new System.EventArgs());
 	}
@@ -33,18 +31,10 @@ public class CursorView : MonoBehaviour {
 	{
 		Color cellColor = ownerColors[playerControl.PlayerNumber];
 
-		foreach(Renderer r in childRenderers){
-			Debug.Log ("Editing color" + cellColor);
-			r.material.SetColor("_Color", cellColor);
+		for(int r = 0; r < childRenderers.Length; r ++){
+			childRenderers[r].material.SetColor("_Color", cellColor);
 		}
 
 		transform.position = new Vector3(cursorScript.XPos, cursorScript.YPos, 0.0F);
-	}
-
-
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

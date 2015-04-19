@@ -54,14 +54,14 @@ public class Cell : MonoBehaviour {
 	}
 
 	public void InitializeAdjacentCells(Grid grid){
-		string adjacentList = "";
+//		string adjacentList = "";
 		adjacentCells.Clear();
 		List<Cell> foundCells = grid.GetAdjacentCells(xPos, yPos);
 		for(int i = 0; i < foundCells.Count; i++){
 			adjacentCells.Add(foundCells[i]);
-			adjacentList += "[" + foundCells[i].xPos + "," + foundCells[i].yPos + "]";
+//			adjacentList += "[" + foundCells[i].xPos + "," + foundCells[i].yPos + "]";
 		}
-		Debug.LogWarning("Cell " + xPos + ", " + yPos + " adjacent Cells: " + adjacentList);
+//		Debug.LogWarning("Cell " + xPos + ", " + yPos + " adjacent Cells: " + adjacentList);
 	}
 
 	public void Live(){

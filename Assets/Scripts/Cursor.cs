@@ -40,8 +40,10 @@ public class Cursor : MonoBehaviour {
 			yPos += y;
 		}
 
-		if(CursorUpdated != null){
-			CursorUpdated(this, blankEvent);
+		if(x != 0 || y != 0){
+			if(CursorUpdated != null){
+				CursorUpdated(this, blankEvent);
+			}
 		}
 	}
 }
