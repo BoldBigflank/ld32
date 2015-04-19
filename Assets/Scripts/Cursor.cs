@@ -21,6 +21,13 @@ public class Cursor : MonoBehaviour {
 		get { return yPos; }
 	}
 
+	[SerializeField]
+	PlayerState playerState;
+
+	public int PlayerNumber{
+		get{return playerState.PlayerNumber;}
+	}
+	
 	void Start(){
 		blankEvent = new System.EventArgs();
 	}
@@ -28,7 +35,12 @@ public class Cursor : MonoBehaviour {
 	public void Activate(){
 		Cell cell = grid.GetCell(xPos, yPos);
 		if(cell != null){
-			cell.Revive();
+			if(!cell.Revive(playerState.PlayerNumber)){
+				// Wrong input, animate with X
+
+			} else  {
+				// It worked, SLAM THOSE CURSORS
+			};
 		}
 	}
 

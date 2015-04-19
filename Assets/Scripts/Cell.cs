@@ -100,11 +100,17 @@ public class Cell : MonoBehaviour {
 		}
 	}
 
-	public void Revive(){
+	public bool Revive(int o){
+		if(alive){
+			return false;
+		}
 		alive = true;
+		owner = o;
+
 		if(CellUpdated != null){
 			CellUpdated(this, blankEvent);
 		}
+		return true;
 	}
 
 //	void OnDrawGizmos(){

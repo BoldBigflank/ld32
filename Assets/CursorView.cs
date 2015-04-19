@@ -8,9 +8,6 @@ public class CursorView : MonoBehaviour {
 	[SerializeField]
 	GameObject cursorCorner;
 
-	[SerializeField]
-	PlayerControl playerControl;
-
 	Color[] ownerColors = new Color[] { Color.green, Color.red, Color.blue } ;
 
 	Renderer[] childRenderers;
@@ -27,9 +24,8 @@ public class CursorView : MonoBehaviour {
 	}
 
 	void HandleCursorUpdated (object sender, System.EventArgs e)
-
 	{
-		Color cellColor = ownerColors[playerControl.PlayerNumber];
+		Color cellColor = ownerColors[cursorScript.PlayerNumber];
 
 		for(int r = 0; r < childRenderers.Length; r ++){
 			childRenderers[r].material.SetColor("_Color", cellColor);
