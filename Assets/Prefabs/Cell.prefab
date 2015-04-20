@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2310756}
   - 114: {fileID: 11486710}
   - 114: {fileID: 11475962}
-  - 111: {fileID: 11162252}
+  - 95: {fileID: 9587230}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -63,21 +63,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129956}
   m_Mesh: {fileID: 4300000, guid: 56df1794fd224453497aaea80fbce2c4, type: 3}
---- !u!111 &11162252
-Animation:
+--- !u!95 &9587230
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 129956}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 33c819e79e9a04d1194289efbbc407e8, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ef999a936669f493fadcf45f9eff4163, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11475962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,7 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellScript: {fileID: 11486710}
-  cellAnimations: {fileID: 11162252}
 --- !u!114 &11486710
 MonoBehaviour:
   m_ObjectHideFlags: 1
