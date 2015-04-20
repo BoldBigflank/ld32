@@ -38,9 +38,17 @@ public class Cell : MonoBehaviour {
 	public bool NextState {
 		get { return nextState; }
 	}
+	bool previousState;
+	public bool PreviousState {
+		get { return previousState; }
+	}
 	int nextOwner = 0;
 	public int NextOwner {
 		get { return nextOwner; }
+	}
+	int previousOwner = 0;
+	public int PreviousOwner {
+		get { return previousOwner; }
 	}
 	int liveCount = 0;
 	Grid grid;
@@ -131,6 +139,8 @@ public class Cell : MonoBehaviour {
 	}
 
 	public void UpdateLive(){
+		previousState = alive;
+		previousOwner = owner;
 		if(owner != nextOwner){
 			owner = nextOwner;
 			if(OwnerUpdated != null){
@@ -145,12 +155,12 @@ public class Cell : MonoBehaviour {
 		}
 	}
 
-	public bool Revive(int o){
-		if(alive){
+	public bool SetCell(int newOwner, bool live, bool force = false){
+		if(!force && alive){
 			return false;
 		}
-		alive = true;
-		owner = nextOwner = o;
+		alive = live;
+		owner = nextOwner = newOwner;
 
 		if(CellUpdated != null){
 			CellUpdated(this, blankEvent);

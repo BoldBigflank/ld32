@@ -33,6 +33,18 @@ public class PlayerState : MonoBehaviour {
 		get { return isSlowing; }
 	}
 
+	[SerializeField]
+	int buildPoints = 10;
+	public int BuildPoints{
+		get { return buildPoints; }
+		set { buildPoints = value; }
+	}
+	[SerializeField]
+	int buildPointMax = 10;
+	public int BuildPointMax {
+		get { return buildPointMax; }
+	}
+
 	void Start(){
 		blankArgs = new System.EventArgs();
 		slowTimeLeft = slowTimeMax;
@@ -60,6 +72,7 @@ public class PlayerState : MonoBehaviour {
 	}
 
 	public void UpdateScore(int newScore){
+		Debug.LogWarning(newScore);
 		territoryScore = newScore;
 		if(ScoreChanged != null){
 			ScoreChanged(this, blankArgs);

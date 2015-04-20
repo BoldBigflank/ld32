@@ -34,7 +34,7 @@ public class Grid : MonoBehaviour {
 
 	Dictionary<int, int> playerScores = new Dictionary<int, int>();
 
-	void Start(){
+	void Awake(){
 		cells = new Cell[xSize * ySize];
 		for(int x = 0; x < xSize; x ++){
 			for(int y = 0; y < ySize; y ++){
@@ -55,6 +55,9 @@ public class Grid : MonoBehaviour {
 		for(int i = 0; i < cells.Length; i++){
 			cells[i].Live();
 		}
+		for(int i = 0; i < cells.Length; i++){
+			cells[i].UpdateLive();
+		}
 	}
 
 	public void SetScoresFromOwnedDeadCells(){
@@ -65,12 +68,23 @@ public class Grid : MonoBehaviour {
 		}
 		// add total score values
 		for(int i = 0; i < cells.Length; i++){
-			cells[i].UpdateLive();
 			if(!cells[i].Alive){
 				if(playerScores.ContainsKey(cells[i].Owner)){
 					playerScores[cells[i].Owner] ++;
 				} else if (cells[i].Owner > 0) {
 					playerScores.Add(cells[i].Owner, 1);
+				}
+			}
+		}
+	}
+
+	public void SetScoresFromDyingCells(){
+		for(int i = 0; i < cells.Length; i++){
+			if(cells[i].PreviousState && !cells[i].Alive){
+				if(playerScores.ContainsKey(cells[i].PreviousOwner)){
+					playerScores[cells[i].PreviousOwner] ++;
+				} else if (cells[i].PreviousOwner > 0) {
+					playerScores.Add(cells[i].PreviousOwner, 1);
 				}
 			}
 		}
@@ -163,6 +177,10 @@ public class Grid : MonoBehaviour {
 			}
 		}
 		return lastPlaceOwner;
+	}
+
+	public void SetCell(int x, int y, int owner, bool live, bool force){
+		cells[GetCellArrayIndex(x,y)].SetCell(owner, live, force);
 	}
 }
 

@@ -39,14 +39,14 @@ public class Cursor : MonoBehaviour {
 			break;
 		case 2:
 			xPos = grid.XSize-1;
-			yPos = grid.YSize-1;
-			break;
-		case 3:
-			xPos = 0;
 			yPos = 0;
 			break;
-		case 4:
+		case 3:
 			xPos = grid.XSize-1;
+			yPos = grid.YSize-1;
+			break;
+		case 4:
+			xPos = 0;
 			yPos = 0;
 			break;
 		default:
@@ -54,17 +54,21 @@ public class Cursor : MonoBehaviour {
 			yPos = Random.Range(0, grid.YSize);
 			break;
 		}
+
+		CursorUpdated(this, blankEvent);
 	}
 
 	public void Activate(){
-		Cell cell = grid.GetCell(xPos, yPos);
-		if(cell != null){
-			if(!cell.Revive(playerState.PlayerNumber)){
-				// Wrong input, animate with X
-
-			} else  {
-				// It worked, SLAM THOSE CURSORS
-			};
+		if(playerState.BuildPoints > 0){
+			Cell cell = grid.GetCell(xPos, yPos);
+			if(cell != null){
+				if(!cell.SetCell(playerState.PlayerNumber, true)){
+					// Wrong input, animate with X
+				} else  {
+					// It worked, SLAM THOSE CURSORS
+					playerState.BuildPoints --;
+				}
+			}
 		}
 	}
 

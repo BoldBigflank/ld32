@@ -59,7 +59,7 @@ public class PlayerStateView : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		slowdownBar.transform.localScale = new Vector3(state.SlowTimeLeft / state.SlowTimeMax,
+		slowdownBar.transform.localScale = new Vector3(state.BuildPoints / state.BuildPointMax,
 		                                               slowdownBar.transform.localScale.y,
 		                                               slowdownBar.transform.localScale.z);
 	}

@@ -178,7 +178,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449312, guid: 1c68d4dbfde834708a1fc39ff79a7bde, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c68d4dbfde834708a1fc39ff79a7bde, type: 2}
@@ -218,7 +218,7 @@ Transform:
   m_Children:
   - {fileID: 42425179}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!114 &1258293590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +253,8 @@ MonoBehaviour:
   playerNumber: 1
   slowTimeMax: 1
   isSlowing: 0
+  buildPoints: 10
+  buildPointMax: 10
 --- !u!1001 &1333467598
 Prefab:
   m_ObjectHideFlags: 0
@@ -290,7 +292,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22418264, guid: a524e300e11554447822570c6bd31464, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 22418264, guid: a524e300e11554447822570c6bd31464, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -379,7 +381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1388292267 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11478288, guid: a214f0ed46d51413fbd677b6ecaa91cf,
@@ -470,7 +472,7 @@ Transform:
   m_Children:
   - {fileID: 224513754}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1001 &1545688464
 Prefab:
   m_ObjectHideFlags: 0
@@ -513,6 +515,18 @@ Prefab:
     - target: {fileID: 137144, guid: ef27d3a58a2a54d0ba0b70c3c7b52fe1, type: 2}
       propertyPath: m_Name
       value: Game Manager Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 137144, guid: ef27d3a58a2a54d0ba0b70c3c7b52fe1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476986, guid: ef27d3a58a2a54d0ba0b70c3c7b52fe1, type: 2}
+      propertyPath: matchTime
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 11476986, guid: ef27d3a58a2a54d0ba0b70c3c7b52fe1, type: 2}
+      propertyPath: roundTime
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef27d3a58a2a54d0ba0b70c3c7b52fe1, type: 2}
@@ -576,7 +590,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &1683324899
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +620,7 @@ Transform:
   m_Children:
   - {fileID: 1878888689}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!114 &1683324901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +655,50 @@ MonoBehaviour:
   playerNumber: 2
   slowTimeMax: 1
   isSlowing: 0
+  buildPoints: 10
+  buildPointMax: 10
+--- !u!1 &1719224074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1719224076}
+  - 114: {fileID: 1719224075}
+  m_Layer: 0
+  m_Name: Game Manager Kill
+  m_TagString: GameManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1719224075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1719224074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc53cc750e8bd4eaca322cf8348be19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundTime: 1024
+  deltaTime: 16
+  matchTime: 100000
+--- !u!4 &1719224076
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1719224074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.38408065, y: 6.56020546, z: -1.90734863e-06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!114 &1793519074 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11478288, guid: a214f0ed46d51413fbd677b6ecaa91cf,
@@ -684,7 +742,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 436792, guid: b2b27f3348e5a48b4bc8662ba4e8a11b, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2b27f3348e5a48b4bc8662ba4e8a11b, type: 2}
@@ -915,6 +973,14 @@ Prefab:
     - target: {fileID: 137144, guid: 5eb2bdbd1e4ad447eae8c935a4672084, type: 2}
       propertyPath: m_Name
       value: Game Manager Takeover
+      objectReference: {fileID: 0}
+    - target: {fileID: 137144, guid: 5eb2bdbd1e4ad447eae8c935a4672084, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11431350, guid: 5eb2bdbd1e4ad447eae8c935a4672084, type: 2}
+      propertyPath: matchTime
+      value: 15000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5eb2bdbd1e4ad447eae8c935a4672084, type: 2}
