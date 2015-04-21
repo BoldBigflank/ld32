@@ -57,7 +57,7 @@ public class CellView : MonoBehaviour {
 //		thisRenderer.material.SetColor("_Color", cellColor);
 
 
-		cellAnimator.SetTrigger("clicked");
+		cellAnimator.SetTrigger(cellState);
 //		cellAnimations.Stop();
 //		cellAnimations.Play("CellClick");
 	}
