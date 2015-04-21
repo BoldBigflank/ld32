@@ -7,6 +7,8 @@ public class Cursor : MonoBehaviour {
 	System.EventArgs blankEvent;
 	
 	Grid grid;
+	
+	Animator thisAnimator;
 
 	[SerializeField]
 	int xPos;
@@ -28,7 +30,7 @@ public class Cursor : MonoBehaviour {
 	}
 	
 	void Start(){
-		
+		thisAnimator = gameObject.GetComponent<Animator>();
 		grid = GameObject.FindGameObjectWithTag("Grid").GetComponent<Grid>();
 
 		blankEvent = new System.EventArgs();
@@ -64,8 +66,11 @@ public class Cursor : MonoBehaviour {
 			if(cell != null){
 				if(!cell.SetCell(playerState.PlayerNumber, true)){
 					// Wrong input, animate with X
+					thisAnimator.SetTrigger("failed");
 				} else  {
 					// It worked, SLAM THOSE CURSORS
+					thisAnimator.SetTrigger("clicked");
+					
 					playerState.BuildPoints --;
 				}
 			}
